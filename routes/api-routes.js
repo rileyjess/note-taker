@@ -39,9 +39,11 @@ apiRoute.delete('/api/notes/:id', (req, res) => {
         const notes = JSON.parse(data);
 
         // remove the note with the given id property
-        removeNote = notes.filter(note => note.id !== req.params.id)
+        removeNote = notes.filter((note) => note.id !== req.params.id)
 
         // rewrite the notes to the db.json file
         fs.writeFile('../db/db.json', JSON.stringify(removeNote));
+
+        res.json(`Note ${id} has been deleted.`);
     })
 });
