@@ -1,8 +1,8 @@
-const apiRoute = requrie('express').Router();
+const apiRoute = require('express').Router();
 const fs = require('fs');
 
 // npm package to create a unique id
-const uuid = require('uuid');
+const { v4: uuidv4 } = require('uuid');
 
 // GET /api/notes should read the db.json file and return all saved notes as JSON
 apiRoute.get('/api/notes', (req, res) => {
@@ -22,7 +22,7 @@ apiRoute.post('/api/notes', (req, res) => {
                 title: req.body.title,
                 text: req.body.text,
                 // give each note a unique id when it's saved - use an npm package
-                id: uuid(),
+                id: uuidv4(),
             };
 
             parsedNotes.push(newNote);
@@ -47,3 +47,5 @@ apiRoute.delete('/api/notes/:id', (req, res) => {
         res.json(`Note ${id} has been deleted.`);
     })
 });
+
+module.exports = apiRoute;

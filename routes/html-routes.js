@@ -1,14 +1,14 @@
 const path = require('path');
-const html = require('express').Router();
+const htmlRoute = require('express').Router();
 
 // GET /notes should return the notes.html file
-app.get('/notes', (req, res) =>
-    res.sendFile(path.join(__dirname, 'public/routes.html'))
+htmlRoute.get('/notes', (req, res) =>
+    res.sendFile(path.join(__dirname, '../public/notes.html'))
 );
 
 // GET * should return the index.html file
-app.get('*', (req, res) =>
-    res.sendFile(path.join(__dirname, 'public/index.html'))
+htmlRoute.get('*', (req, res) =>
+    res.sendFile(path.join(__dirname, '../public/index.html'))
 );
 
-module.exports = html;
+module.exports = htmlRoute;
